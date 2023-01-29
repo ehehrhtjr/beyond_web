@@ -3,16 +3,46 @@
 <head>
     <title>Document</title>
     <style>
-        div{
+        #box{
             position:absolute;
-            width: 200px;
-            height:200px; 
+            width: 50px;
+            height:50px; 
             background-color: blue;
         }
+        .back{
+            position: absolute;
+            width:410px;
+            height:290px;
+        }
+        #back1{
+            background-color: black;
+        }
+        #back2{
+            background-color: cornflowerblue;
+            margin-left: 410px;
+        }
+        #back3{
+            background-color: green;
+            margin-left: 820px;
+        }
+        #back1{
+            background-color: black;
+        }
+        #back1{
+            background-color: black;
+        }
+        #back1{
+            background-color: black;
+        }
+
+
     </style>
     <script>
         x=0;
         y=0;
+
+        
+
         function moveBox(){
             box=document.getElementById("box");
             if(x<1000 && y==0){
@@ -34,11 +64,47 @@
             }
         }
 
-        setInterval(moveBox,100);
+        function start_interval(){
+            move_interval=setInterval(moveBox,1);
+        }
+
+        function stop_interval(){
+            clearInterval(move_interval);
+        }
+        
+        button_state=0;
+        function button_click(){
+            if(button_state==0){
+                start_interval();
+                document.getElementById("btn").innerHTML="Stop Moving";
+                button_state=1;
+            }
+            else{
+                stop_interval();
+                document.getElementById("btn").innerHTML="Start Moving";
+                button_state=0;
+            }
+        }
+        
     </script>
 </head>
 <body>
-    <button onclick="moveBox()">move</button>
+    <button id="btn" onclick="button_click()">Start Moving</button>
     <div id="box"></div>
+
+
+    <div id="back1" class="back"></div>
+    <div id="back2" class="back"></div>
+    <div id="back3" class="back"></div>
+    <div id="back4" class="back"></div>
+    <div id="back5" class="back"></div>
+    <div id="back6" class="back"></div>
+    
 </body>
 </html>
+
+
+
+
+
+
