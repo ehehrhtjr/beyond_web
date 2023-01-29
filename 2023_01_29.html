@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        div{
+            position:absolute;
+            width: 200px;
+            height:200px; 
+            background-color: blue;
+        }
+    </style>
+    <script>
+        x=0;
+        y=0;
+        function moveBox(){
+            box=document.getElementById("box");
+            if(x<1000 && y==0){
+                x+=100;
+                                //top bottom right left
+                box.style.margin="0px 0px 0px "+x+"px";
+            } 
+            else if(y<300 && x==1000){
+                y+=100;
+                box.style.margin=y+"px 0px 0px "+x+"px";
+            }
+            else if(x>0){
+                x-=100;
+                box.style.margin=y+"px 0px 0px "+x+"px";   
+            }
+            else{
+                y-=100;
+                box.style.margin=y+"px 0px 0px "+x+"px";   
+            }
+        }
+
+        setInterval(moveBox,100);
+    </script>
+</head>
+<body>
+    <button onclick="moveBox()">move</button>
+    <div id="box"></div>
+</body>
+</html>
