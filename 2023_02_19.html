@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .box{
+            background-color: green;
+            width:150px;
+            height:150px;
+            position: absolute;
+        }
+    </style>
+    <script>
+        function move(){
+            for(i=0;i<3;i+=1){
+                document.getElementById("box"+i).style.width=(Math.random()*100+100)+"px";
+                document.getElementById("box"+i).style.height=(Math.random()*100+100)+"px";
+                y=Math.random()*300;
+                x=Math.random()*1000;
+                document.getElementById("box"+i).style.margin=y+"px 0px 0px "+x+"px";
+            }
+        }
+        window.onload=function(){
+            for(i=0;i<3;i+=1){
+                document.getElementById("paper").innerHTML+="<div class='box' id='box"+i+"'>"+(i+1)+"</div>"    
+            }
+        }
+
+        setInterval(move,500)    
+
+    </script>
+    <title>Document</title>
+</head>
+<body id="paper">
+
+</body>
+</html>
