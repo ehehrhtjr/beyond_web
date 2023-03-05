@@ -7,13 +7,31 @@
             width:150px;
             height:150px;
             position: absolute;
+            text-align: center;
+            
+            border-radius: 50%;
+        }
+        #score{
+            background-color: cyan;
+            width:150px;
+            padding-top: 25px;
+            font-size:25px;
+            right: 0px;
+            height:75px;
+            position: absolute;
+            text-align: center;
         }
     </style>
     <script>
+        score=0;
+
         function move(){
+            
             for(i=0;i<3;i+=1){
-                document.getElementById("box"+i).style.width=(Math.random()*100+100)+"px";
-                document.getElementById("box"+i).style.height=(Math.random()*100+100)+"px";
+                document.getElementById("box"+i).style.background="green";
+                radius=(Math.random()*100+100)+"px"; // 100~200 
+                document.getElementById("box"+i).style.width=radius;
+                document.getElementById("box"+i).style.height=radius;
                 y=Math.random()*300;
                 x=Math.random()*1000;
                 document.getElementById("box"+i).style.margin=y+"px 0px 0px "+x+"px";
@@ -23,14 +41,22 @@
             for(i=0;i<3;i+=1){
                 document.getElementById("paper").innerHTML+="<div class='box' id='box"+i+"'>"+(i+1)+"</div>"    
             }
+
+            for(i=0;i<3;i+=1){
+                document.getElementById("box"+i).addEventListener('click',(event)=>{
+                    event.target.style.background="red";
+                    score+=event.target.innerHTML*1;          
+                    document.getElementById("score").innerHTML=score;     
+                });
+            }
         }
 
-        setInterval(move,500)    
+        setInterval(move,2000)    
 
     </script>
     <title>Document</title>
 </head>
 <body id="paper">
-
+    <div id="score">0</div>
 </body>
 </html>
