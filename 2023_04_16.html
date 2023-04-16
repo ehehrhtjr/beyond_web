@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .direction{
+            width:100px;
+            height:75px;
+            background-color: aquamarine;
+            margin: 10px;
+            text-align: center;
+            padding-top: 25px;
+            font-size: 30px;
+            float:left;
+        }
+    </style>
+    <title>Document</title>
+    <script>
+        answer=new Array();//
+        n=100;//
+
+        window.onload=function(){
+            board=document.getElementById("board");
+            for(i=0;i<n;i++){ //
+                r=Math.floor(Math.random()*4)
+                answer[i]=r;//
+                
+                board.innerHTML+="<div id='box"+i+"' class='direction'>→</div>"
+                if(r==0){
+                    document.getElementById('box'+i).style.rotate="0deg"
+                }
+                else if(r==1){
+                    document.getElementById('box'+i).style.rotate="90deg"
+                }
+                else if(r==2){
+                    document.getElementById('box'+i).style.rotate="180deg"
+                } 
+                else if(r==3){
+                    document.getElementById('box'+i).style.rotate="270deg"
+                }
+            }
+        }
+
+        current_block=0;
+
+        function current(){
+            document.getElementById("box"+current_block).style.background="aqua";
+        }
+        setInterval(current,1);
+
+        window.addEventListener('keydown',function(e){
+            if(e.key=="ArrowRight"){
+
+            }
+            else if(e.key=="ArrowLeft"){
+
+            }
+            else if(e.key=="ArrowUp"){
+
+            }
+            else if(e.key=="ArrowDown"){
+                
+            }
+        })
+    </script>
+
+</head>
+<body>
+    <div id="board"></div>
+</body>
+</html>
