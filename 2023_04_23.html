@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .direction{
+            width:100px;
+            height:75px;
+            background-color: aquamarine;
+            margin: 10px;
+            text-align: center;
+            padding-top: 25px;
+            font-size: 30px;
+            float:left;
+        }
+        #header{
+            width:100%;
+            height:150px;
+            background-color: darkolivegreen;
+            font-size:60px;
+            text-align: center;
+            padding-top: 10px;
+        }
+        #complete{
+            width:800px;
+            height:350px;
+            background-color:blueviolet;
+            position:absolute;
+            left:200px;
+            top:100px;
+            padding-top:150px;
+            text-align: center;
+            font-size:100px;
+
+        }
+    </style>
+    <title>Document</title>
+    <script>
+        answer=new Array();//
+        n=20;//
+
+        window.onload=function(){
+            board=document.getElementById("board");
+            for(i=0;i<n;i++){ //
+                r=Math.floor(Math.random()*4)
+                answer[i]=r;//
+                
+                board.innerHTML+="<div id='box"+i+"' class='direction'>→</div>"
+                //0 :오 1:아래 2:왼 3:위
+                if(r==0){
+                    document.getElementById('box'+i).style.rotate="0deg"
+                }
+                else if(r==1){
+                    document.getElementById('box'+i).style.rotate="90deg"
+                }
+                else if(r==2){
+                    document.getElementById('box'+i).style.rotate="180deg"
+                } 
+                else if(r==3){
+                    document.getElementById('box'+i).style.rotate="270deg"
+                }
+            }
+        }
+
+
+        current_block=0;
+
+        function current(){
+            document.getElementById("box"+current_block).style.background="aqua";
+        }
+        setInterval(current,1);
+        //
+        start=0;
+        t=0;
+        function ti(){
+            if(start==1){
+                t+=0.1;
+                document.getElementById("time").innerHTML=t.toFixed(1)
+            }
+        }
+        timer=setInterval(ti,100)
+        //
+        
+        //0:오 1:아래 2:왼 3:위
+        window.addEventListener('keydown',function(e){
+            start=1 //
+
+            if(e.key=="ArrowRight"){
+                if(answer[current_block]==0){
+                    document.getElementById("box"+current_block).style.background="gray";
+                    current_block+=1;
+                }
+                else{
+                    for(i=0;i<=current_block;i++){
+                        document.getElementById("box"+i).style.background="aquamarine";
+                    }
+                    current_block=0;
+                }
+            }
+            else if(e.key=="ArrowLeft"){
+                if(answer[current_block]==2){
+                    document.getElementById("box"+current_block).style.background="gray";
+                    current_block+=1;
+                }
+                else{
+                    for(i=0;i<=current_block;i++){
+                        document.getElementById("box"+i).style.background="aquamarine";
+                    }
+                    current_block=0;
+                }
+            }
+            else if(e.key=="ArrowUp"){
+                if(answer[current_block]==3){
+                    document.getElementById("box"+current_block).style.background="gray";
+                    current_block+=1;
+                }
+                else{
+                    for(i=0;i<=current_block;i++){
+                        document.getElementById("box"+i).style.background="aquamarine";
+                    }
+                    current_block=0;
+                }
+            }
+            else if(e.key=="ArrowDown"){
+                if(answer[current_block]==1){
+                    document.getElementById("box"+current_block).style.background="gray";
+                    current_block+=1;
+                }
+                else{
+                    for(i=0;i<=current_block;i++){
+                        document.getElementById("box"+i).style.background="aquamarine";
+                    }
+                    current_block=0;
+                }
+            }
+        })
+    </script>
+
+</head>
+<body>
+    <div id="header">Random Arrow Game !!<br><label id="time">0</label></div>
+    <div id="board"></div>
+    <div id="complete">Complete<br><label id="result"></label></div>
+</body>
+</html>
