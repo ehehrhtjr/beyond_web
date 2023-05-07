@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        #back{
+            background-color: black;
+        }
+        div{
+            position: absolute;
+        }
+        #player{
+            width:25px;
+            height:25px;
+            background-color: white;
+            margin-left: 600px;
+            margin-top:300px;
+        }
+    </style>
+
+    <script>
+        x=600;
+        y=300;
+
+        window.addEventListener('keydown',function(e){
+            if(e.key=="ArrowRight"){
+                x+=20
+            }
+            if(e.key=="ArrowLeft"){
+                x-=20
+            }
+            if(e.key=="ArrowUp"){
+                y-=20
+            }
+            if(e.key=="ArrowDown"){
+                y+=20
+            }
+            document.getElementById("player").style.margin=y+"px 0px 0px "+x+"px";
+        })
+
+        window.onload=function(){
+            for(i=0;i<50;i++){
+                document.getElementById("back").innerHTML+="<div id='bullet"+i+"' class='b'</div>"
+            }   
+        }
+
+        
+
+    </script>
+
+</head>
+<body id="back">
+    <div id="player"></div>
+</body>
+</html>
