@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        #back{
+            background-color: black;
+        }
+        div{
+            position: absolute;
+        }
+        #player{
+            width:25px;
+            height:25px;
+            background-color: white;
+            margin-left: 600px;
+            margin-top:500px;
+        }
+        .b{
+            width:7px;
+            height: 7px;
+            background-color: white;
+        }
+    </style>
+
+    <script>
+        x=600;
+        y=500;
+        n=50;
+        window.addEventListener('keydown',function(e){
+            if(e.key=="ArrowRight"){
+                if(x<1200){
+                    x+=20
+                }
+            }
+            if(e.key=="ArrowLeft"){
+                if(x>0){
+                    x-=20
+                }
+            }
+            if(e.key=="ArrowUp"){
+                if(y>0){
+                    y-=20
+                }            }
+            if(e.key=="ArrowDown"){
+                if(y<540){
+                    y+=20
+                }
+            }
+            document.getElementById("player").style.margin=y+"px 0px 0px "+x+"px";
+        })
+        
+        b_x=new Array();
+        b_y=new Array();
+
+        window.onload=function(){
+            for(i=0;i<n;i++){
+                b_x[i]=Math.floor(Math.random()*1200);
+                b_y[i]=Math.floor(Math.random()*450);
+                document.getElementById("back").innerHTML+="<div id='bullet"+i+"' class='b'</div>"
+                document.getElementById("bullet"+i).style.marginLeft=b_x[i]+"px";
+                document.getElementById("bullet"+i).style.marginTop=b_y[i]+"px";
+            }   
+        }
+        function f_b(){
+            for(i=0;i<n;i++){
+                if(x<b_x[i] && x+18>b_x[i]){
+                    if(y<b_y[i] && y+18>b_y[i]){
+                        
+                    }
+                }
+                if(b_y[i]<540){
+                    b_y[i]+=5;
+                    document.getElementById("bullet"+i).style.marginTop=b_y[i]+"px";
+                }
+                else{
+                    b_y[i]=0;
+                    b_x[i]=Math.floor(Math.random()*1200);
+                    document.getElementById("bullet"+i).style.margin=b_y[i]+"px 0px 0px "+b_x[i]+"px";
+                }
+            }
+        }
+        game=setInterval(f_b,10);
+
+    </script>
+
+</head>
+<body id="back">
+    <div id="player"></div>
+</body>
+</html>
