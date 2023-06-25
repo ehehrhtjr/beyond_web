@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        div{
+            position: absolute;
+        }
+        #box{
+            width:100px;
+            height:100px;
+            z-index: 1;
+            background-color: chartreuse;
+            
+        }
+        #result_board{
+            width:200px;
+            height:150px;
+            background-color: white;
+            border: 1px solid black;
+            right:0px;
+        }
+    </style>
+    <script>
+        point=0;
+        function twinkle(){
+            r=Math.random()*255;
+            g=Math.random()*255;
+            b=Math.random()*255;
+            box.style.background="rgb("+r+","+g+","+b+")"
+        }
+        
+        window.onload=function(){
+            box=document.getElementById("box")
+            
+            box.addEventListener("mouseover",(event)=>{
+                x=Math.random()*1100
+                y=Math.random()*400
+                //                top bottom right left
+                box.style.margin=y+"px 0px 0px "+x+"px";
+
+                    //움직일 때 박스색이 랜덤하게 바뀌게 한다.
+                    //rgb(0-255,0-255,0-255) 
+            })
+        
+            box.addEventListener("click",(event)=>{
+                alert();
+                //point+=1;
+                //document.getElementById("result_board").innerHTML="score<br>"+point
+            })
+            
+            setInterval(twinkle,100)
+        }
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="result_board"></div>
+</body>
+</html>
