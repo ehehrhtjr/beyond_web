@@ -20,6 +20,18 @@
             height:75px;
             position: absolute;
             text-align: center;
+            z-index:2;
+        }
+        #timer{
+            background-color: cyan;
+            width:150px;
+            padding-top: 25px;
+            font-size:25px;
+            right: 160px;
+            height:75px;
+            position: absolute;
+            text-align: center;
+            z-index: 2;
         }
     </style>
     <script>
@@ -37,6 +49,10 @@
                 document.getElementById("box"+i).style.margin=y+"px 0px 0px "+x+"px";
             }
         }
+
+        
+        t=15.0;
+
         window.onload=function(){
             for(i=0;i<3;i+=1){
                 document.getElementById("paper").innerHTML+="<div class='box' id='box"+i+"'>"+(i+1)+"</div>"    
@@ -44,19 +60,31 @@
 
             for(i=0;i<3;i+=1){
                 document.getElementById("box"+i).addEventListener('click',(event)=>{
-                    event.target.style.background="red";
-                    score+=event.target.innerHTML*1;          
-                    document.getElementById("score").innerHTML=score;     
+                    if(t>0.1){
+                        event.target.style.background="red";
+                        score+=event.target.innerHTML*1;          
+                        document.getElementById("score").innerHTML=score;     
+                    }
                 });
             }
         }
+        function timer(){
+            t-=0.1;
+            document.getElementById("timer").innerHTML=t.toFixed(1);//
 
-        setInterval(move,2000)    
-
+            if(t<=0.1){//
+                clearInterval(time_interval);//
+                clearInterval(move_interval);//
+            }
+        }
+        time_interval=setInterval(timer,100);//
+        move_interval=setInterval(move,2000);//  
+        
     </script>
     <title>Document</title>
 </head>
 <body id="paper">
     <div id="score">0</div>
+    <div id="timer">15</div> <!---->
 </body>
 </html>
